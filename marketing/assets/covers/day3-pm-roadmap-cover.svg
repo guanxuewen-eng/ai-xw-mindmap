@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="1440" viewBox="0 0 1080 1440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1440" fill="#F8FAFC"/>
+  <rect x="54" y="54" width="972" height="1332" rx="56" fill="#FFFFFF" stroke="#D9E2F2" stroke-width="2"/>
+  <rect x="96" y="110" width="354" height="58" rx="29" fill="#334155" fill-opacity="0.1"/>
+  <text x="124" y="150" class="eyebrow" fill="#334155">Day 3 下午 · 后续计划</text>
+  <text x="96" y="315" class="title">下一步：更实时的脑图智能体</text>
+  <text x="96" y="415" class="subtitle">补细粒度事件、direct command、权限确认和审计</text>
+  <text x="96" y="505" class="support">Roadmap</text>
+  <g transform="translate(96 610)">
+    <rect width="888" height="176" rx="32" fill="#334155" fill-opacity="0.08"/>
+    <text x="40" y="70" class="mini-title" fill="#334155">xw-mindmap Agent Skill</text>
+    <text x="40" y="122" class="mini-copy">AI 先提案，你确认后再改脑图</text>
+  </g>
+  
+      <g>
+        <circle cx="118" cy="875" r="10" fill="#334155"/>
+        <text x="145" y="885" class="point">前端普通编辑生成事件</text>
+      </g>
+      <g>
+        <circle cx="118" cy="949" r="10" fill="#334155"/>
+        <text x="145" y="959" class="point">更完整的 watch 能力</text>
+      </g>
+      <g>
+        <circle cx="118" cy="1023" r="10" fill="#334155"/>
+        <text x="145" y="1033" class="point">权限确认机制</text>
+      </g>
+      <g>
+        <circle cx="118" cy="1097" r="10" fill="#334155"/>
+        <text x="145" y="1107" class="point">安全 direct command</text>
+      </g>
+  <line x1="96" y1="1238" x2="984" y2="1238" stroke="#E5EAF3" stroke-width="2"/>
+  <text x="96" y="1300" class="repo">github.com/guanxuewen-eng/ai-xw-mindmap</text>
+  <text x="96" y="1352" class="safe">不包含本机 token / 私人脑图数据 / 服务器密码</text>
+  <style>
+    text { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; }
+    .eyebrow { font-size: 28px; font-weight: 700; }
+    .title { font-size: 82px; font-weight: 900; fill: #111827; letter-spacing: 0; }
+    .subtitle { font-size: 42px; font-weight: 700; fill: #334155; letter-spacing: 0; }
+    .support { font-size: 30px; font-weight: 600; fill: #64748B; }
+    .mini-title { font-size: 34px; font-weight: 800; }
+    .mini-copy { font-size: 32px; font-weight: 700; fill: #111827; }
+    .point { font-size: 34px; font-weight: 700; fill: #1F2937; }
+    .repo { font-size: 30px; font-weight: 800; fill: #111827; }
+    .safe { font-size: 26px; font-weight: 600; fill: #64748B; }
+  </style>
+</svg>

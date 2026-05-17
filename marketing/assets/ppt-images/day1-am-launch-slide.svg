@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F8FF"/>
+  <rect x="56" y="56" width="1488" height="788" rx="36" fill="#FFFFFF" stroke="#D9E2F2" stroke-width="2"/>
+  <rect x="96" y="100" width="360" height="50" rx="25" fill="#2154D4" fill-opacity="0.1"/>
+  <text x="124" y="134" class="eyebrow" fill="#2154D4">Day 1 上午 · 发布官宣</text>
+  <text x="96" y="244" class="title">我把 AI 接进了脑图</text>
+  <text x="98" y="315" class="subtitle">新网脑图 AI Skill 开放下载</text>
+  <text x="100" y="374" class="support">支持 Codex / Claude Code / Hermes / OpenClaw</text>
+  
+      <g>
+        <rect x="96" y="430" width="610" height="120" rx="22" fill="#FFFFFF" stroke="#D8E0EC" stroke-width="2"/>
+        <rect x="124" y="464" width="52" height="52" rx="16" fill="#2154D4" fill-opacity="0.12"/>
+        <text x="142" y="501" class="num" fill="#2154D4">1</text>
+        <text x="200" y="505" class="card-text">创建或打开脑图</text>
+      </g>
+      <g>
+        <rect x="800" y="430" width="610" height="120" rx="22" fill="#FFFFFF" stroke="#D8E0EC" stroke-width="2"/>
+        <rect x="828" y="464" width="52" height="52" rx="16" fill="#2154D4" fill-opacity="0.12"/>
+        <text x="846" y="501" class="num" fill="#2154D4">2</text>
+        <text x="904" y="505" class="card-text">读取当前脑图结构</text>
+      </g>
+      <g>
+        <rect x="96" y="602" width="610" height="120" rx="22" fill="#FFFFFF" stroke="#D8E0EC" stroke-width="2"/>
+        <rect x="124" y="636" width="52" height="52" rx="16" fill="#2154D4" fill-opacity="0.12"/>
+        <text x="142" y="673" class="num" fill="#2154D4">3</text>
+        <text x="200" y="677" class="card-text">提交 AI 修改提案</text>
+      </g>
+      <g>
+        <rect x="800" y="602" width="610" height="120" rx="22" fill="#FFFFFF" stroke="#D8E0EC" stroke-width="2"/>
+        <rect x="828" y="636" width="52" height="52" rx="16" fill="#2154D4" fill-opacity="0.12"/>
+        <text x="846" y="673" class="num" fill="#2154D4">4</text>
+        <text x="904" y="677" class="card-text">监听提案事件</text>
+      </g>
+  <text x="96" y="806" class="footer">github.com/guanxuewen-eng/ai-xw-mindmap</text>
+  <text x="1040" y="806" class="footer-right">AI 先提案，你确认后再改</text>
+  <style>
+    text { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; }
+    .eyebrow { font-size: 24px; font-weight: 800; }
+    .title { font-size: 64px; font-weight: 900; fill: #111827; letter-spacing: 0; }
+    .subtitle { font-size: 32px; font-weight: 700; fill: #334155; letter-spacing: 0; }
+    .support { font-size: 24px; font-weight: 700; fill: #64748B; }
+    .num { font-size: 26px; font-weight: 900; }
+    .card-text { font-size: 28px; font-weight: 800; fill: #1F2937; }
+    .footer { font-size: 22px; font-weight: 800; fill: #111827; }
+    .footer-right { font-size: 22px; font-weight: 800; fill: #64748B; }
+  </style>
+</svg>
