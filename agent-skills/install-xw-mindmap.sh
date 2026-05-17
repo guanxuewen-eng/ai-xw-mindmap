@@ -7,10 +7,23 @@ AGENT="${1:-all}"
 
 copy_skill() {
   local dest="$1"
+  local installed_at
+  installed_at="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
   mkdir -p "$dest"
   rm -rf "$dest/xw-mindmap"
   cp -R "$SRC" "$dest/xw-mindmap"
   chmod +x "$dest/xw-mindmap/scripts/xw-mindmap.mjs" 2>/dev/null || true
+  cat > "$dest/xw-mindmap/.xw-mindmap-skill.json" <<JSON
+{
+  "version": "0.1.1",
+  "installedAt": "$installed_at",
+  "installTarget": "$dest",
+  "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
+  "manifestUrl": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json",
+  "autoUpdate": true
+}
+JSON
+  chmod 600 "$dest/xw-mindmap/.xw-mindmap-skill.json" 2>/dev/null || true
   echo "installed: $dest/xw-mindmap"
 }
 
@@ -38,4 +51,3 @@ case "$AGENT" in
     exit 2
     ;;
 esac
-

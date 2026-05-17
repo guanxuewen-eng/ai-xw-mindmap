@@ -3,22 +3,33 @@ import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import { fileURLToPath } from 'node:url'
 
 const DEFAULT_BASE_URL = 'http://183.223.249.216:58003'
 const STORAGE_PATH = path.join(os.homedir(), '.config', 'mind-workspace', 'device.json')
+const SKILL_VERSION = '0.1.1'
+const UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000
+const SCRIPT_PATH = fileURLToPath(import.meta.url)
+const SKILL_DIR = path.dirname(path.dirname(SCRIPT_PATH))
+const INSTALL_META_PATH = path.join(SKILL_DIR, '.xw-mindmap-skill.json')
+const DEFAULT_MANIFEST_URL = 'https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json'
 
 function usage() {
   console.error(`Usage:
   xw-mindmap discover
-  xw-mindmap choose-new
+  xw-mindmap choose-new --agent-name "Codex 架构助手"
   xw-mindmap open --mode ensure --title "项目架构设计"
   xw-mindmap open --mode open --id <mindMapId>
   xw-mindmap get --id <mindMapId>
   xw-mindmap propose --file proposal.json
   xw-mindmap watch --id <mindMapId> [--seconds 60]
+  xw-mindmap check-update
+  xw-mindmap update
 
 Environment:
-  XW_MINDMAP_API  Override API base URL. Default: ${DEFAULT_BASE_URL}`)
+  XW_MINDMAP_API         Override API base URL. Default: ${DEFAULT_BASE_URL}
+  XW_MINDMAP_AGENT_NAME  Stable AI collaborator name shown in the web app.
+  XW_MINDMAP_NO_UPDATE   Set to 1 to disable automatic skill updates.`)
 }
 
 function argsToObject(argv) {
@@ -49,8 +60,7 @@ async function readState() {
     // create below
   }
   const state = { deviceId: crypto.randomUUID() }
-  await writeState(state)
-  return state
+  return writeState(state)
 }
 
 async function writeState(patch) {
@@ -62,9 +72,121 @@ async function writeState(patch) {
   return next
 }
 
+async function readInstallMeta() {
+  try {
+    return JSON.parse(await fs.readFile(INSTALL_META_PATH, 'utf8'))
+  } catch {
+    return {}
+  }
+}
+
+async function writeInstallMeta(patch) {
+  const old = await readInstallMeta()
+  const next = {
+    installType: 'skill-directory',
+    repoUrl: 'https://github.com/guanxuewen-eng/ai-xw-mindmap',
+    manifestUrl: DEFAULT_MANIFEST_URL,
+    installedAt: old.installedAt || new Date().toISOString(),
+    ...old,
+    ...patch,
+  }
+  await fs.writeFile(INSTALL_META_PATH, JSON.stringify(next, null, 2), { mode: 0o600 })
+  return next
+}
+
+function resolveAgentName(state) {
+  const raw = process.env.XW_MINDMAP_AGENT_NAME || state.agentName || ''
+  const normalized = String(raw).replace(/\s+/g, ' ').trim()
+  return normalized ? normalized.slice(0, 100) : ''
+}
+
+function compareVersions(a, b) {
+  const pa = String(a || '0').split('.').map(n => parseInt(n, 10) || 0)
+  const pb = String(b || '0').split('.').map(n => parseInt(n, 10) || 0)
+  const len = Math.max(pa.length, pb.length)
+  for (let i = 0; i < len; i += 1) {
+    const diff = (pa[i] || 0) - (pb[i] || 0)
+    if (diff !== 0) return diff
+  }
+  return 0
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url, { headers: { Accept: 'application/json' } })
+  if (!res.ok) throw new Error(`update manifest fetch failed: ${res.status} ${res.statusText}`)
+  return res.json()
+}
+
+async function fetchText(url) {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`update file fetch failed: ${res.status} ${res.statusText}`)
+  return res.text()
+}
+
+async function checkForUpdate({ apply = false, force = false } = {}) {
+  if (!force && process.env.XW_MINDMAP_NO_UPDATE === '1') {
+    return { skipped: true, reason: 'disabled', currentVersion: SKILL_VERSION }
+  }
+
+  const meta = await readInstallMeta()
+  const now = Date.now()
+  const lastChecked = Date.parse(meta.lastUpdateCheckAt || '')
+  if (!force && Number.isFinite(lastChecked) && now - lastChecked < UPDATE_INTERVAL_MS) {
+    return { skipped: true, reason: 'interval', currentVersion: SKILL_VERSION, latestVersion: meta.latestVersion || SKILL_VERSION }
+  }
+
+  const manifestUrl = process.env.XW_MINDMAP_UPDATE_MANIFEST || meta.manifestUrl || DEFAULT_MANIFEST_URL
+  const manifest = await fetchJson(manifestUrl)
+  const latestVersion = manifest.version || SKILL_VERSION
+  const hasUpdate = compareVersions(latestVersion, SKILL_VERSION) > 0
+  await writeInstallMeta({ lastUpdateCheckAt: new Date().toISOString(), latestVersion, manifestUrl })
+
+  if (!hasUpdate || !apply) {
+    return { currentVersion: SKILL_VERSION, latestVersion, hasUpdate, manifestUrl }
+  }
+
+  const files = Array.isArray(manifest.files) ? manifest.files : []
+  if (files.length === 0) throw new Error('update manifest has no files')
+  for (const file of files) {
+    if (!file.path || !file.url) continue
+    const target = path.resolve(SKILL_DIR, file.path)
+    if (!target.startsWith(SKILL_DIR + path.sep)) throw new Error(`refusing update outside skill dir: ${file.path}`)
+    const content = await fetchText(file.url)
+    await fs.mkdir(path.dirname(target), { recursive: true })
+    await fs.writeFile(target, content, { mode: file.executable ? 0o755 : 0o644 })
+  }
+
+  await writeInstallMeta({
+    version: latestVersion,
+    updatedAt: new Date().toISOString(),
+    latestVersion,
+    manifestUrl,
+  })
+  return { currentVersion: SKILL_VERSION, latestVersion, hasUpdate: true, updated: true, files: files.map(f => f.path) }
+}
+
+async function autoUpdateIfNeeded(command) {
+  if (['help', '--help', 'check-update', 'update'].includes(command || '')) return
+  try {
+    const result = await checkForUpdate({ apply: true })
+    if (result.updated) {
+      console.error(`xw-mindmap skill updated to ${result.latestVersion}. This command will continue; restart the agent to reload SKILL.md if needed.`)
+    }
+  } catch (err) {
+    if (process.env.XW_MINDMAP_DEBUG_UPDATE === '1') {
+      console.error(`xw-mindmap update check failed: ${err.message || err}`)
+    }
+  }
+}
+
+function encodeBase64UrlUtf8(value) {
+  return Buffer.from(value, 'utf8').toString('base64url')
+}
+
 async function request(method, pathname, body) {
   const baseUrl = (process.env.XW_MINDMAP_API || DEFAULT_BASE_URL).replace(/\/+$/, '')
   const state = await readState()
+  const agentName = resolveAgentName(state)
   const headers = {
     'Content-Type': 'application/json',
     'X-Skill-Client': process.env.XW_MINDMAP_CLIENT || 'agent-skill',
@@ -73,6 +195,7 @@ async function request(method, pathname, body) {
     'X-Skill-Machine': os.hostname(),
     'X-Skill-OsUser': os.userInfo().username,
   }
+  if (agentName) headers['X-Skill-Agent-Name-B64'] = encodeBase64UrlUtf8(agentName)
   if (state.token) headers.Authorization = `Bearer ${state.token}`
 
   const requestBody = body === undefined && method !== 'GET' && method !== 'HEAD' ? {} : body
@@ -99,6 +222,7 @@ function safePrint(value) {
     if (!obj || typeof obj !== 'object') return
     for (const [key, val] of Object.entries(obj)) {
       if (/(token|secret|password|key)$/i.test(key)) obj[key] = '[redacted]'
+      else if (typeof val === 'string' && /sk_[A-Za-z0-9_-]+/.test(val)) obj[key] = val.replace(/sk_[A-Za-z0-9_-]+/g, '[redacted]')
       else hide(val)
     }
   }
@@ -109,8 +233,23 @@ function safePrint(value) {
 async function main() {
   const [command, ...rest] = process.argv.slice(2)
   const args = argsToObject(rest)
+  const agentName = args['agent-name'] || args.agentName
+  if (typeof agentName === 'string' && agentName.trim()) {
+    await writeState({ agentName: agentName.trim().replace(/\s+/g, ' ').slice(0, 100) })
+  }
   if (!command || command === 'help' || command === '--help') {
     usage()
+    return
+  }
+  await autoUpdateIfNeeded(command)
+
+  if (command === 'check-update') {
+    safePrint(await checkForUpdate({ force: true }))
+    return
+  }
+
+  if (command === 'update') {
+    safePrint(await checkForUpdate({ apply: true, force: true }))
     return
   }
 

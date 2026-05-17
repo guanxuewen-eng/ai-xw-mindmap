@@ -62,6 +62,8 @@ export type ClientInfo = {
     machine?: string;
     /** OS user (whoami). Used as the seed for the account display name + handle. */
     osUser?: string;
+    /** Stable AI collaborator name shown in mind-map accounts, e.g. "Codex 架构助手". */
+    agentName?: string;
 };
 export type WatchEvent = {
     type: 'node_created';

@@ -1,0 +1,25 @@
+{
+  "name": "xw-mindmap",
+  "version": "0.1.1",
+  "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
+  "releaseNotes": "Adds stable AI collaborator names and daily automatic Skill self-update checks.",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/SKILL.md"
+    },
+    {
+      "path": "scripts/xw-mindmap.mjs",
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs",
+      "executable": true
+    },
+    {
+      "path": "agents/openai.yaml",
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/agents/openai.yaml"
+    },
+    {
+      "path": "skill-version.json",
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json"
+    }
+  ]
+}

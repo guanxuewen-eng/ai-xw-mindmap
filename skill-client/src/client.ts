@@ -32,6 +32,10 @@ function parseSseBlock(raw: string): { id?: number; ev: WatchEvent } | null {
   try { return { id, ev: JSON.parse(data) as WatchEvent } } catch { return null }
 }
 
+function encodeBase64UrlUtf8(value: string): string {
+  return Buffer.from(value, 'utf8').toString('base64url')
+}
+
 export type SkillClientOptions = {
   /** Base URL of the Mind Workspace backend, e.g. "https://api.mindworkspace.io". No trailing slash needed. */
   baseUrl: string
@@ -224,6 +228,7 @@ export class SkillClient {
       'X-Skill-DeviceId': stored.deviceId,
     }
     if (this.clientInfo.clientVersion) headers['X-Skill-ClientVersion'] = this.clientInfo.clientVersion
+    if (this.clientInfo.agentName) headers['X-Skill-Agent-Name-B64'] = encodeBase64UrlUtf8(this.clientInfo.agentName)
     if (this.clientInfo.machine) headers['X-Skill-Machine'] = this.clientInfo.machine
     if (this.clientInfo.osUser) headers['X-Skill-OsUser'] = this.clientInfo.osUser
     if (stored.token) headers['Authorization'] = `Bearer ${stored.token}`

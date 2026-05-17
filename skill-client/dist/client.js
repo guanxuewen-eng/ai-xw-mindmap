@@ -33,6 +33,9 @@ function parseSseBlock(raw) {
         return null;
     }
 }
+function encodeBase64UrlUtf8(value) {
+    return Buffer.from(value, 'utf8').toString('base64url');
+}
 /**
  * Programmatic entry point for external coding agents.
  *
@@ -196,6 +199,8 @@ class SkillClient {
         };
         if (this.clientInfo.clientVersion)
             headers['X-Skill-ClientVersion'] = this.clientInfo.clientVersion;
+        if (this.clientInfo.agentName)
+            headers['X-Skill-Agent-Name-B64'] = encodeBase64UrlUtf8(this.clientInfo.agentName);
         if (this.clientInfo.machine)
             headers['X-Skill-Machine'] = this.clientInfo.machine;
         if (this.clientInfo.osUser)
