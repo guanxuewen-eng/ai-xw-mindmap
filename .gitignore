@@ -7,7 +7,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Marketing materials are kept on Desktop, not in the public repo.
+marketing/
+
 # Local Skill identity and tokens must stay on the machine.
 .config/
 device.json
-

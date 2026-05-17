@@ -1,13 +1,13 @@
 # ai-xw-mindmap
 
-这是 **新网脑图 xw-mindmap 的 AI 智能体技能包**。
-给 Codex、Claude Code、Hermes、OpenClaw 这类本地智能体用，让它们可以连接新网脑图，帮你创建脑图、读取脑图内容、提交 AI 修改提案，并监听提案事件。
+这是 **AI脑图 xw-mindmap 的 AI 智能体技能包**。
+给 Codex、Claude Code、Hermes、OpenClaw 这类本地智能体用，让它们可以连接 AI脑图，帮你创建脑图、读取脑图内容、提交 AI 修改提案，并监听提案事件。
 
 我把安装脚本、Skill 文件、SDK 和离线下载包都放在这里了。你可以放心下载，仓库里不包含我的本机密钥、服务器密码、Skill token 或任何私人脑图数据。
 
 ## 现在能做什么
 
-- 让智能体发现新网脑图服务能力。
+- 让智能体发现 AI脑图服务能力。
 - 在本机创建或复用一个 Skill 身份。
 - 打开或创建脑图项目。
 - 读取当前脑图文档和版本号。
@@ -79,7 +79,7 @@ node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs open --mode ensure --titl
 ```
 
 ```text
-调用新网脑图技能，打开当前项目，并提交一组结构优化提案。
+调用 AI脑图技能，打开当前项目，并提交一组结构优化提案。
 ```
 
 ```text

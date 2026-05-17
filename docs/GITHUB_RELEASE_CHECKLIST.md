@@ -109,7 +109,7 @@ Attach:
 Suggested release title:
 
 ```text
-xw-mindmap Agent Skill v0.1.0
+AI脑图 Skill v0.1.0
 ```
 
 Suggested release notes:

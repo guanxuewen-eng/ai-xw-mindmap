@@ -1,5 +1,5 @@
 interface:
-  display_name: "新网脑图"
+  display_name: "AI脑图"
   short_description: "打开、读取和提案修改脑图"
   brand_color: "#2154D4"
   default_prompt: "Use $xw-mindmap to create or open a mind map and draft a project architecture outline."

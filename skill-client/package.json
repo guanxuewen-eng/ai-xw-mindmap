@@ -1,7 +1,7 @@
 {
   "name": "@mind-workspace/skill-client",
   "version": "0.1.0",
-  "description": "新网脑图 xw-mindmap Skill API SDK for Codex, Claude Code, Hermes, OpenClaw, and other local AI agents.",
+  "description": "AI脑图 xw-mindmap Skill API SDK for Codex, Claude Code, Hermes, OpenClaw, and other local AI agents.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {

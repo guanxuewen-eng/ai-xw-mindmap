@@ -1,8 +1,8 @@
-# xw-mindmap Agent Skill
+# AI脑图 Skill
 
-这是新网脑图给本地 AI 智能体用的 Skill。
+这是 AI脑图给本地 AI 智能体用的 Skill。
 
-它的目标很简单：让 Codex、Claude Code、Hermes、OpenClaw 这类工具可以通过安全的 Skill API 连接新网脑图，帮你创建脑图、读取内容、提交 AI 提案、监听提案事件。
+它的目标很简单：让 Codex、Claude Code、Hermes、OpenClaw 这类工具可以通过安全的 Skill API 连接 AI脑图，帮你创建脑图、读取内容、提交 AI 提案、监听提案事件。
 
 仓库里只包含公开代码和说明，不包含任何人的本机 token、服务器密码或私人脑图数据。
 
@@ -58,7 +58,7 @@ node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs open --mode ensure --titl
 ```
 
 ```text
-调用新网脑图技能，打开这个脑图并提交一组结构优化提案。
+调用 AI脑图技能，打开这个脑图并提交一组结构优化提案。
 ```
 
 ```text

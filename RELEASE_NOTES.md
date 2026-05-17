@@ -1,10 +1,10 @@
-# xw-mindmap Agent Skill v0.1.0
+# AI脑图 Skill v0.1.0
 
-这是新网脑图 AI 智能体 Skill 的第一版公开包。
+这是 AI脑图智能体 Skill 的第一版公开包。
 
 ## 适合谁下载
 
-如果你在用 Codex、Claude Code、Hermes、OpenClaw，或者其它支持本地 `SKILL.md` 的智能体，可以下载这个仓库，把新网脑图能力装进你的本地智能体。
+如果你在用 Codex、Claude Code、Hermes、OpenClaw，或者其它支持本地 `SKILL.md` 的智能体，可以下载这个仓库，把 AI脑图能力装进你的本地智能体。
 
 安装后，智能体可以帮你：
 

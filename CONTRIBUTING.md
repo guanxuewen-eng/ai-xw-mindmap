@@ -2,7 +2,7 @@
 
 欢迎提交问题和建议。
 
-这个仓库主要维护新网脑图的 AI 智能体 Skill、安装脚本和 SDK。提交改动时请注意：
+这个仓库主要维护AI脑图的 AI 智能体 Skill、安装脚本和 SDK。提交改动时请注意：
 
 - 不要提交本机 `~/.config/mind-workspace/device.json`。
 - 不要提交 Skill token、JWT、服务器密码、数据库密码或 `.env`。

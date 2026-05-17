@@ -1,6 +1,6 @@
 # xw-mindmap Release Artifacts
 
-这里放的是新网脑图 AI Skill 的离线下载包。可以放心下载，包里不包含本机 token、服务器密码或私人脑图数据。
+这里放的是AI脑图 Skill 的离线下载包。可以放心下载，包里不包含本机 token、服务器密码或私人脑图数据。
 
 ## Files
 
