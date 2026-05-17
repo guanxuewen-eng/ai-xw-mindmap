@@ -1,42 +1,41 @@
 # xw-mindmap Release Artifacts
 
-This directory contains local release packages.
+这里放的是新网脑图 AI Skill 的离线下载包。可以放心下载，包里不包含本机 token、服务器密码或私人脑图数据。
 
 ## Files
 
 - `xw-mindmap-agent-skill-0.1.0.tgz`  
-  Portable Skill package for Codex, Claude Code, Hermes, and OpenClaw.
+  给 Codex、Claude Code、Hermes、OpenClaw 使用的 Skill 离线包。
 
 - `mind-workspace-skill-client-0.1.0.tgz`  
-  npm package tarball for `@mind-workspace/skill-client`.
+  `@mind-workspace/skill-client` 的 npm tarball。
 
-## Install Skill Package Manually
+## 手动安装 Skill 包
 
 ```bash
 mkdir -p ~/.codex/skills
 tar -xzf xw-mindmap-agent-skill-0.1.0.tgz -C ~/.codex/skills
 ```
 
-For Claude Code:
+Claude Code 示例：
 
 ```bash
 mkdir -p ~/.claude/skills
 tar -xzf xw-mindmap-agent-skill-0.1.0.tgz -C ~/.claude/skills
 ```
 
-The tarball also includes `install-xw-mindmap.sh`, which can be used from a temporary extraction directory.
+tar 包里也包含 `install-xw-mindmap.sh`，解压后可以继续用脚本安装到其它智能体目录。
 
-## Install SDK Tarball
+## 安装 SDK 包
 
 ```bash
 npm install ./mind-workspace-skill-client-0.1.0.tgz
 ```
 
-## Security
+## 安全说明
 
-These packages do not include local device tokens. The runtime token lives in:
+这些包不包含本机设备 token。运行时 token 只保存在：
 
 ```text
 ~/.config/mind-workspace/device.json
 ```
-

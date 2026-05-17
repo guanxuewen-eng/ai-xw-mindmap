@@ -1,7 +1,7 @@
 {
   "name": "@mind-workspace/skill-client",
   "version": "0.1.0",
-  "description": "Skill client SDK for AI Mind Workspace. Lets external coding agents (Codex / Claude Code / Hermes) discover, identify, and submit proposals to a Mind Workspace backend.",
+  "description": "新网脑图 xw-mindmap Skill API SDK for Codex, Claude Code, Hermes, OpenClaw, and other local AI agents.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
@@ -12,9 +12,31 @@
     "dev": "tsc --watch",
     "prepublishOnly": "tsc"
   },
-  "files": ["dist", "README.md"],
-  "keywords": ["skill", "mind-map", "agent", "sdk", "ai"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "xw-mindmap",
+    "mind-map",
+    "ai-agent",
+    "codex",
+    "claude-code",
+    "hermes",
+    "openclaw",
+    "skill",
+    "sdk"
+  ],
   "license": "MIT",
+  "homepage": "https://github.com/guanxuewen-eng/ai-xw-mindmap#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/guanxuewen-eng/ai-xw-mindmap.git",
+    "directory": "skill-client"
+  },
+  "bugs": {
+    "url": "https://github.com/guanxuewen-eng/ai-xw-mindmap/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

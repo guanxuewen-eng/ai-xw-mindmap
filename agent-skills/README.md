@@ -1,20 +1,12 @@
 # xw-mindmap Agent Skill
 
-`xw-mindmap` lets AI coding agents work with 新网脑图 through the Skill API.
+这是新网脑图给本地 AI 智能体用的 Skill。
 
-It supports:
+它的目标很简单：让 Codex、Claude Code、Hermes、OpenClaw 这类工具可以通过安全的 Skill API 连接新网脑图，帮你创建脑图、读取内容、提交 AI 提案、监听提案事件。
 
-- Discovering server capabilities and claiming a local Skill identity.
-- Creating or opening a mind-map project.
-- Reading the current mind-map document.
-- Submitting reviewable AI proposals.
-- Watching committed proposal and node events.
+仓库里只包含公开代码和说明，不包含任何人的本机 token、服务器密码或私人脑图数据。
 
-Direct silent mutation is intentionally not enabled by default. The current production-safe workflow is proposal-first: the agent drafts a structured change proposal, then the user commits or rejects it in the web editor.
-
-## Install
-
-From a Git checkout:
+## 安装
 
 ```bash
 git clone git@github.com:guanxuewen-eng/ai-xw-mindmap.git
@@ -22,7 +14,7 @@ cd ai-xw-mindmap
 ./agent-skills/install-xw-mindmap.sh codex
 ```
 
-Supported targets:
+支持的目标：
 
 ```bash
 ./agent-skills/install-xw-mindmap.sh codex
@@ -32,18 +24,18 @@ Supported targets:
 ./agent-skills/install-xw-mindmap.sh all
 ```
 
-Install paths:
+安装位置：
 
 - Codex: `~/.codex/skills/xw-mindmap/SKILL.md`
 - Claude Code: `~/.claude/skills/xw-mindmap/SKILL.md`
 - Hermes: `~/.hermes/skills/xw-mindmap/SKILL.md`
 - OpenClaw: `~/.openclaw/skills/xw-mindmap/SKILL.md`
 
-After installing, restart the agent app so its Skill list is refreshed.
+安装后重启智能体应用，让技能列表刷新。
 
-## First Run
+## 第一次运行
 
-The bundled script requires Node 18 or newer.
+需要 Node 18 或更新版本。
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs discover
@@ -51,15 +43,15 @@ node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs choose-new
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs open --mode ensure --title "项目架构设计"
 ```
 
-The script stores device identity and Skill token in:
+运行后，本机身份和 Skill token 会保存在：
 
 ```text
 ~/.config/mind-workspace/device.json
 ```
 
-Do not publish, delete, or print this file. It is intentionally outside the Skill folder so updating the Skill does not clear local authorization.
+这个文件不会被打包，不会上传，也不会因为重新安装 Skill 被清掉。不要把它发给别人。
 
-## Common Agent Prompts
+## 常用提示词
 
 ```text
 使用 xw-mindmap 技能，创建一个“项目架构设计”脑图。
@@ -73,39 +65,39 @@ Do not publish, delete, or print this file. It is intentionally outside the Skil
 用 xw-mindmap 监听这个脑图 60 秒，看是否有 AI 提案提交事件。
 ```
 
-## CLI Examples
+## CLI 示例
 
-Discover capabilities:
+发现服务能力：
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs discover
 ```
 
-Open or create by title:
+按标题打开或创建脑图：
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs open --mode ensure --title "项目架构设计"
 ```
 
-Read a document:
+读取脑图：
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs get --id <mindMapId>
 ```
 
-Submit a proposal:
+提交 AI 提案：
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs propose --file proposal.json
 ```
 
-Watch events:
+监听事件：
 
 ```bash
 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs watch --id <mindMapId> --seconds 60
 ```
 
-## Proposal JSON
+## 提案格式
 
 ```json
 {
@@ -125,37 +117,37 @@ node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs watch --id <mindMapId> --
 }
 ```
 
-Before proposing, read the document first so the agent has the correct node UIDs and current revision.
+提交提案前先读取文档，拿到正确的节点 UID 和当前 `revision`，再把 `revision` 作为 `baseRevision`。
 
-## Configuration
+## 配置
 
-Production API:
+默认生产 API：
 
 ```text
 http://183.223.249.216:58003
 ```
 
-Override for local development:
+本地开发时可以覆盖：
 
 ```bash
 XW_MINDMAP_API=http://127.0.0.1:58003 node ~/.codex/skills/xw-mindmap/scripts/xw-mindmap.mjs discover
 ```
 
-Optional client label:
+可选客户端标识：
 
 ```bash
 XW_MINDMAP_CLIENT=claude-code node ~/.claude/skills/xw-mindmap/scripts/xw-mindmap.mjs discover
 ```
 
-## Safety Model
+## 安全模式
 
-- Tokens are stored locally and redacted from CLI output.
-- Structural edits should use proposals.
-- Destructive edits should be explicitly approved by the user.
-- Direct command mode should only be enabled after the server implements permission gates, audit logging, idempotency, revision checks, and rollback strategy.
+- token 只保存在本机，CLI 输出会自动打码。
+- 结构修改默认走提案。
+- 删除、覆盖等危险操作应该先让用户确认。
+- direct command 以后要等权限确认、审计日志、幂等、版本校验和回滚策略补齐后再开放。
 
-## Current Limitations
+## 当前限制
 
-- `watch` is reliable for committed AI proposals and proposal-derived node events.
-- Direct front-end saves may still require re-reading the full document until the front-end emits fine-grained save events.
-- Direct command/control is not part of this release.
+- `watch` 对 AI 提案提交和提案产生的节点事件比较可靠。
+- 前端普通保存路径还不一定都有细粒度事件，必要时需要重新读取完整文档。
+- 这个版本还不包含直接命令控制。
