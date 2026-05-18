@@ -113,15 +113,20 @@ function compareVersions(a, b) {
 }
 
 async function fetchJson(url) {
-  const res = await fetch(url, { headers: { Accept: 'application/json' } })
+  const res = await fetch(withCacheBust(url), { headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' }, cache: 'no-store' })
   if (!res.ok) throw new Error(`update manifest fetch failed: ${res.status} ${res.statusText}`)
   return res.json()
 }
 
 async function fetchBytes(url) {
-  const res = await fetch(url)
+  const res = await fetch(withCacheBust(url), { headers: { 'Cache-Control': 'no-cache' }, cache: 'no-store' })
   if (!res.ok) throw new Error(`update file fetch failed: ${res.status} ${res.statusText}`)
   return Buffer.from(await res.arrayBuffer())
+}
+
+function withCacheBust(url) {
+  const separator = String(url).includes('?') ? '&' : '?'
+  return `${url}${separator}xwUpdateTs=${Date.now()}`
 }
 
 function sha256Hex(bytes) {

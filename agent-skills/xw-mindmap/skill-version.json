@@ -13,7 +13,7 @@
       "path": "scripts/xw-mindmap.mjs",
       "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs",
       "executable": true,
-      "sha256": "6d6eca22cddbba8fbd079d7ead134f0496fe2921e212c80c4619591a127db8ed"
+      "sha256": "3c73f1f31d71849076b4103879215f61298cdb0298eee1c0fbb000df69e29b2d"
     },
     {
       "path": "agents/openai.yaml",
