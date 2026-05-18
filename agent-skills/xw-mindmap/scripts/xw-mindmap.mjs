@@ -5,9 +5,9 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 
-const DEFAULT_BASE_URL = 'http://183.223.249.216:58003'
+const DEFAULT_BASE_URL = 'https://ai-mindmap.xinwangzn.com:58002'
 const STORAGE_PATH = path.join(os.homedir(), '.config', 'mind-workspace', 'device.json')
-const SKILL_VERSION = '0.1.3'
+const SKILL_VERSION = '0.1.4'
 const UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000
 const SCRIPT_PATH = fileURLToPath(import.meta.url)
 const SKILL_DIR = path.dirname(path.dirname(SCRIPT_PATH))

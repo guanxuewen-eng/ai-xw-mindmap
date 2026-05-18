@@ -15,7 +15,7 @@ Source files:
 
 Release artifacts:
 
-- `release/xw-mindmap-agent-skill-0.1.3.tgz`
+- `release/xw-mindmap-agent-skill-0.1.4.tgz`
 - `release/mind-workspace-skill-client-0.1.0.tgz`
 - `release/SHA256SUMS`
 
@@ -51,7 +51,7 @@ git remote add xw git@github.com:guanxuewen-eng/ai-xw-mindmap.git
 cd /Users/guan/Projects/simple-mind-map
 npm --prefix skill-client run build
 mkdir -p release
-tar -czf release/xw-mindmap-agent-skill-0.1.3.tgz -C agent-skills xw-mindmap install-xw-mindmap.sh
+tar -czf release/xw-mindmap-agent-skill-0.1.4.tgz -C agent-skills xw-mindmap install-xw-mindmap.sh
 (cd skill-client && npm pack)
 mv -f skill-client/mind-workspace-skill-client-0.1.0.tgz release/
 (cd release && shasum -a 256 *.tgz > SHA256SUMS)
@@ -60,7 +60,7 @@ mv -f skill-client/mind-workspace-skill-client-0.1.0.tgz release/
 Verify package contents:
 
 ```bash
-tar -tzf release/xw-mindmap-agent-skill-0.1.3.tgz
+tar -tzf release/xw-mindmap-agent-skill-0.1.4.tgz
 tar -tzf release/mind-workspace-skill-client-0.1.0.tgz | head
 (cd release && shasum -a 256 -c SHA256SUMS)
 ```
@@ -100,26 +100,26 @@ git push origin HEAD:main
 Tag:
 
 ```bash
-git tag xw-mindmap-skill-v0.1.3
-git push xw xw-mindmap-skill-v0.1.3
+git tag xw-mindmap-skill-v0.1.4
+git push xw xw-mindmap-skill-v0.1.4
 ```
 
 Attach:
 
-- `release/xw-mindmap-agent-skill-0.1.3.tgz`
+- `release/xw-mindmap-agent-skill-0.1.4.tgz`
 - `release/mind-workspace-skill-client-0.1.0.tgz`
 - `release/SHA256SUMS`
 
 Suggested release title:
 
 ```text
-xw-mindmap Agent Skill v0.1.3
+xw-mindmap Agent Skill v0.1.4
 ```
 
 Suggested release notes:
 
 ```markdown
-xw-mindmap agent Skill v0.1.3 release.
+xw-mindmap agent Skill v0.1.4 release.
 
 Includes:
 - Portable SKILL.md distribution for Codex, Claude Code, Hermes, and OpenClaw.
