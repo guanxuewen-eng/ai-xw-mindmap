@@ -11,9 +11,9 @@ This skill connects an AI agent to the AI 脑图 server-side Skill API.
 
 ## Current Status
 
-- Supports `discover`, `open`, `propose`, and `watch`.
-- Direct silent mutation is not the default. Submit reviewable proposals unless a future direct-command endpoint is explicitly available and the user asks for it.
-- Watch events currently cover committed/rejected/failed proposals and fine-grained node events derived from committed proposals. Some direct front-end saves may require re-reading the whole document.
+- Supports `discover`, `open`, `create`, `read`, `propose`, `watch`, `accept-invite`, `command`, `check-update`, and `update`.
+- Direct silent mutation is not the default. Use proposal-first edits unless the user explicitly asks for low-risk direct commands and passes `confirmDirect=true`.
+- Watch events cover ordinary user saves, proposal commits/rejections/failures, direct-command changes, restore events, and fine-grained node events recorded by the server.
 
 ## Endpoints
 
@@ -42,7 +42,7 @@ The script stores its device id and Skill token in `~/.config/mind-workspace/dev
 
 ## Automatic Updates
 
-This skill is updated frequently. The bundled script checks the GitHub version manifest at most once per day and automatically refreshes the installed Skill files when a newer version is available. The local Skill token is stored outside the Skill directory, so updates do not delete authorization.
+This skill is updated frequently. The bundled script checks the GitHub version manifest at most once per day and automatically refreshes the installed Skill files when a newer version is available. It verifies SHA-256 checksums before replacing local files. The local Skill token is stored outside the Skill directory, so updates do not delete authorization.
 
 Manual update commands:
 

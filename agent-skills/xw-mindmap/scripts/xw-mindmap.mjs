@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const DEFAULT_BASE_URL = 'http://183.223.249.216:58003'
 const STORAGE_PATH = path.join(os.homedir(), '.config', 'mind-workspace', 'device.json')
-const SKILL_VERSION = '0.1.2'
+const SKILL_VERSION = '0.1.3'
 const UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000
 const SCRIPT_PATH = fileURLToPath(import.meta.url)
 const SKILL_DIR = path.dirname(path.dirname(SCRIPT_PATH))
@@ -118,10 +118,28 @@ async function fetchJson(url) {
   return res.json()
 }
 
-async function fetchText(url) {
+async function fetchBytes(url) {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`update file fetch failed: ${res.status} ${res.statusText}`)
-  return res.text()
+  return Buffer.from(await res.arrayBuffer())
+}
+
+function sha256Hex(bytes) {
+  return crypto.createHash('sha256').update(bytes).digest('hex')
+}
+
+function verifyFileChecksum(file, bytes) {
+  const expected = file.sha256 || file.checksum
+  if (!expected) return null
+  const normalized = String(expected).replace(/^sha256[:-]/i, '').trim().toLowerCase()
+  if (!/^[a-f0-9]{64}$/.test(normalized)) {
+    throw new Error(`invalid sha256 in update manifest for ${file.path}`)
+  }
+  const actual = sha256Hex(bytes)
+  if (actual !== normalized) {
+    throw new Error(`checksum mismatch for ${file.path}: expected ${normalized}, got ${actual}`)
+  }
+  return actual
 }
 
 async function checkForUpdate({ apply = false, force = false } = {}) {
@@ -148,11 +166,14 @@ async function checkForUpdate({ apply = false, force = false } = {}) {
 
   const files = Array.isArray(manifest.files) ? manifest.files : []
   if (files.length === 0) throw new Error('update manifest has no files')
+  const verified = []
   for (const file of files) {
     if (!file.path || !file.url) continue
     const target = path.resolve(SKILL_DIR, file.path)
     if (!target.startsWith(SKILL_DIR + path.sep)) throw new Error(`refusing update outside skill dir: ${file.path}`)
-    const content = await fetchText(file.url)
+    const content = await fetchBytes(file.url)
+    const checksum = verifyFileChecksum(file, content)
+    if (checksum) verified.push(file.path)
     await fs.mkdir(path.dirname(target), { recursive: true })
     await fs.writeFile(target, content, { mode: file.executable ? 0o755 : 0o644 })
   }
@@ -163,7 +184,7 @@ async function checkForUpdate({ apply = false, force = false } = {}) {
     latestVersion,
     manifestUrl,
   })
-  return { currentVersion: SKILL_VERSION, latestVersion, hasUpdate: true, updated: true, files: files.map(f => f.path) }
+  return { currentVersion: SKILL_VERSION, latestVersion, hasUpdate: true, updated: true, files: files.map(f => f.path), checksumVerified: verified }
 }
 
 async function autoUpdateIfNeeded(command) {

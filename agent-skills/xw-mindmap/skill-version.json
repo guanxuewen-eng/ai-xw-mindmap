@@ -1,21 +1,24 @@
 {
   "name": "xw-mindmap",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
-  "releaseNotes": "Adds AI collaboration invite commands so another installed agent can join a shared mind map by code.",
+  "releaseNotes": "Adds SHA-256 checksum verification to Skill auto-update so downloaded files are verified before replacing local files.",
   "files": [
     {
       "path": "SKILL.md",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/SKILL.md"
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/SKILL.md",
+      "sha256": "2a21d3b9c52a07becd12b6a378dbc79a7e6107094fce0ddb79dbd20a46104eca"
     },
     {
       "path": "scripts/xw-mindmap.mjs",
       "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs",
-      "executable": true
+      "executable": true,
+      "sha256": "6d6eca22cddbba8fbd079d7ead134f0496fe2921e212c80c4619591a127db8ed"
     },
     {
       "path": "agents/openai.yaml",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/agents/openai.yaml"
+      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/agents/openai.yaml",
+      "sha256": "2e5ce3cb71cbdea8e1b1d56a1ad16ce924abf6a21eafd84d15737df4c69b1c7d"
     },
     {
       "path": "skill-version.json",

@@ -27,6 +27,8 @@ Use `all` to install into all supported local directories.
 
 The skill is plain `SKILL.md` plus a bundled Node script, so agents that support filesystem skills can load it without npm installation.
 
+The bundled updater verifies SHA-256 checksums from `skill-version.json` before replacing installed Skill files.
+
 ## GitHub Raw Install Pattern
 
 For machines that do not need the full repo, copy `agent-skills/xw-mindmap/` into the agent's skill directory. The directory must contain:

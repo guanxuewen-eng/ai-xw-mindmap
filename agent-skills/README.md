@@ -43,7 +43,7 @@ After installing, restart the agent app so its Skill list is refreshed.
 
 ## Updates
 
-The Skill includes a small self-updater. Every normal CLI run checks the GitHub version manifest at most once per day and automatically refreshes the installed Skill files when a newer version is available. The local device id and Skill token stay in `~/.config/mind-workspace/device.json`, outside the Skill folder, so updates do not log users out.
+The Skill includes a small self-updater. Every normal CLI run checks the GitHub version manifest at most once per day and automatically refreshes the installed Skill files when a newer version is available. The updater verifies SHA-256 checksums before replacing local files. The local device id and Skill token stay in `~/.config/mind-workspace/device.json`, outside the Skill folder, so updates do not log users out.
 
 Manual commands:
 
