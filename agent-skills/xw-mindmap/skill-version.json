@@ -6,23 +6,23 @@
   "files": [
     {
       "path": "SKILL.md",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/SKILL.md",
+      "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/SKILL.md?ref=main",
       "sha256": "2a21d3b9c52a07becd12b6a378dbc79a7e6107094fce0ddb79dbd20a46104eca"
     },
     {
       "path": "scripts/xw-mindmap.mjs",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs",
+      "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs?ref=main",
       "executable": true,
-      "sha256": "3c73f1f31d71849076b4103879215f61298cdb0298eee1c0fbb000df69e29b2d"
+      "sha256": "963ad064e72f89ee345f8cd9d422babd53fc9a571021fa8cda28bf270186af37"
     },
     {
       "path": "agents/openai.yaml",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/agents/openai.yaml",
+      "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/agents/openai.yaml?ref=main",
       "sha256": "2e5ce3cb71cbdea8e1b1d56a1ad16ce924abf6a21eafd84d15737df4c69b1c7d"
     },
     {
       "path": "skill-version.json",
-      "url": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json"
+      "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/skill-version.json?ref=main"
     }
   ]
 }

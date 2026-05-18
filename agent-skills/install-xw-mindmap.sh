@@ -19,7 +19,7 @@ copy_skill() {
   "installedAt": "$installed_at",
   "installTarget": "$dest",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
-  "manifestUrl": "https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json",
+  "manifestUrl": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/skill-version.json?ref=main",
   "autoUpdate": true
 }
 JSON

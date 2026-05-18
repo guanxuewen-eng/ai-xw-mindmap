@@ -12,7 +12,7 @@ const UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000
 const SCRIPT_PATH = fileURLToPath(import.meta.url)
 const SKILL_DIR = path.dirname(path.dirname(SCRIPT_PATH))
 const INSTALL_META_PATH = path.join(SKILL_DIR, '.xw-mindmap-skill.json')
-const DEFAULT_MANIFEST_URL = 'https://raw.githubusercontent.com/guanxuewen-eng/ai-xw-mindmap/main/agent-skills/xw-mindmap/skill-version.json'
+const DEFAULT_MANIFEST_URL = 'https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/skill-version.json?ref=main'
 
 function usage() {
   console.error(`Usage:
@@ -113,13 +113,13 @@ function compareVersions(a, b) {
 }
 
 async function fetchJson(url) {
-  const res = await fetch(withCacheBust(url), { headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' }, cache: 'no-store' })
+  const res = await fetch(withCacheBust(url), { headers: { Accept: 'application/vnd.github.raw+json, application/json', 'Cache-Control': 'no-cache', 'User-Agent': 'xw-mindmap-updater' }, cache: 'no-store' })
   if (!res.ok) throw new Error(`update manifest fetch failed: ${res.status} ${res.statusText}`)
   return res.json()
 }
 
 async function fetchBytes(url) {
-  const res = await fetch(withCacheBust(url), { headers: { 'Cache-Control': 'no-cache' }, cache: 'no-store' })
+  const res = await fetch(withCacheBust(url), { headers: { Accept: 'application/vnd.github.raw, */*', 'Cache-Control': 'no-cache', 'User-Agent': 'xw-mindmap-updater' }, cache: 'no-store' })
   if (!res.ok) throw new Error(`update file fetch failed: ${res.status} ${res.statusText}`)
   return Buffer.from(await res.arrayBuffer())
 }
