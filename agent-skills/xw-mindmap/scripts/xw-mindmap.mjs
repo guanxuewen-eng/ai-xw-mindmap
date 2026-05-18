@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const DEFAULT_BASE_URL = 'http://183.223.249.216:58003'
 const STORAGE_PATH = path.join(os.homedir(), '.config', 'mind-workspace', 'device.json')
-const SKILL_VERSION = '0.1.1'
+const SKILL_VERSION = '0.1.2'
 const UPDATE_INTERVAL_MS = 24 * 60 * 60 * 1000
 const SCRIPT_PATH = fileURLToPath(import.meta.url)
 const SKILL_DIR = path.dirname(path.dirname(SCRIPT_PATH))
@@ -23,6 +23,7 @@ function usage() {
   xw-mindmap get --id <mindMapId>
   xw-mindmap propose --file proposal.json
   xw-mindmap watch --id <mindMapId> [--seconds 60]
+  xw-mindmap accept-invite --code <inviteCode>
   xw-mindmap check-update
   xw-mindmap update
 
@@ -276,6 +277,12 @@ async function main() {
       throw new Error('open requires --id for mode=open, or --title for mode=create/ensure')
     }
     safePrint(await request('POST', '/api/skill/open', body))
+    return
+  }
+
+  if (command === 'accept-invite') {
+    if (!args.code) throw new Error('accept-invite requires --code <inviteCode>')
+    safePrint(await request('POST', '/api/skill/accept-invite', { code: args.code }))
     return
   }
 

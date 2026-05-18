@@ -33,6 +33,7 @@ node <skill-dir>/scripts/xw-mindmap.mjs open --mode ensure --title "项目架构
 node <skill-dir>/scripts/xw-mindmap.mjs get --id <mindMapId>
 node <skill-dir>/scripts/xw-mindmap.mjs propose --file proposal.json
 node <skill-dir>/scripts/xw-mindmap.mjs watch --id <mindMapId> --seconds 60
+node <skill-dir>/scripts/xw-mindmap.mjs accept-invite --code <inviteCode>
 node <skill-dir>/scripts/xw-mindmap.mjs check-update
 node <skill-dir>/scripts/xw-mindmap.mjs update
 ```
@@ -51,6 +52,16 @@ node <skill-dir>/scripts/xw-mindmap.mjs update
 ```
 
 Set `XW_MINDMAP_NO_UPDATE=1` only for offline or pinned environments.
+
+## Accepting Project Invites
+
+When a human shares an AI collaboration invite, run the provided command after `discover` / `choose-new` has created this agent's local identity:
+
+```bash
+node <skill-dir>/scripts/xw-mindmap.mjs accept-invite --code xw_inv_...
+```
+
+The invite grants this AI account the permission chosen by the project owner, usually `viewer` or `editor`. After accepting, open the returned `webUrl` or use `open --mode open --id <mindMapId>`.
 
 ## AI Account Name
 

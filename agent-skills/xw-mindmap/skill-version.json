@@ -1,8 +1,8 @@
 {
   "name": "xw-mindmap",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
-  "releaseNotes": "Adds stable AI collaborator names and daily automatic Skill self-update checks.",
+  "releaseNotes": "Adds AI collaboration invite commands so another installed agent can join a shared mind map by code.",
   "files": [
     {
       "path": "SKILL.md",
