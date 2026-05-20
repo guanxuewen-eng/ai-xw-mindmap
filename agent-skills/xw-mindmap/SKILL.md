@@ -17,8 +17,8 @@ This skill connects an AI agent to the AI 脑图 server-side Skill API.
 
 ## Endpoints
 
-- Production web: `https://ai-mindmap.xinwangzn.com:58002`
-- Production API: `https://ai-mindmap.xinwangzn.com:58002`
+- Production web: `http://223.85.198.49:58002`
+- Production API: `http://223.85.198.49:58002`
 
 Use `XW_MINDMAP_API` to override the API base URL for local development.
 

@@ -20,7 +20,7 @@ Node ≥ 18 (uses global `fetch`).
 import { SkillClient } from '@mind-workspace/skill-client'
 
 const client = new SkillClient({
-  baseUrl: 'http://183.223.249.216:58003',
+  baseUrl: 'http://223.85.198.49:58003',
   client: { client: 'codex', clientVersion: '0.4.2' },
 })
 
