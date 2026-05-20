@@ -1,19 +1,19 @@
 {
   "name": "xw-mindmap",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
-  "releaseNotes": "Uses the new AI Mind Map server IP endpoint as the default Skill API and keeps checksum-verified updates.",
+  "releaseNotes": "Uses the HTTPS domain endpoint as the default Skill API and keeps checksum-verified updates.",
   "files": [
     {
       "path": "SKILL.md",
       "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/SKILL.md?ref=main",
-      "sha256": "7a2cfdc089aac41ed08ef57d2a09936ce9f04135a0fff7417e8eec536656fd1b"
+      "sha256": "da3bc03312e2b92a041feddc800571f359023af26ba3eb0ea7723dc1febebd50"
     },
     {
       "path": "scripts/xw-mindmap.mjs",
       "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs?ref=main",
       "executable": true,
-      "sha256": "8e15d88702dcdf87cfa45f54a4f1f34a5e826c389a289227031ed605231b47df"
+      "sha256": "f3b2a85083fb5fda4c0aa29b50a480a45af782c9b7e86839dc20ef5408bb4908"
     },
     {
       "path": "agents/openai.yaml",

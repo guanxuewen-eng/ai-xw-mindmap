@@ -151,7 +151,7 @@ Before proposing, read the document first so the agent has the correct node UIDs
 Production API:
 
 ```text
-http://223.85.198.49:58002
+https://ai-mindmap.xinwangzn.com:58002
 ```
 
 Override for local development:

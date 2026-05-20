@@ -44,7 +44,7 @@ The bundled script requires Node 18 or newer for global `fetch`.
 Default API:
 
 ```bash
-http://223.85.198.49:58002
+https://ai-mindmap.xinwangzn.com:58002
 ```
 
 Override for local development:

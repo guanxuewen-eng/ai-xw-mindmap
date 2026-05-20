@@ -15,7 +15,7 @@ copy_skill() {
   chmod +x "$dest/xw-mindmap/scripts/xw-mindmap.mjs" 2>/dev/null || true
   cat > "$dest/xw-mindmap/.xw-mindmap-skill.json" <<JSON
 {
-  "version": "0.1.5",
+  "version": "0.1.6",
   "installedAt": "$installed_at",
   "installTarget": "$dest",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
