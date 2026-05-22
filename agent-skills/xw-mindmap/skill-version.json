@@ -1,24 +1,24 @@
 {
   "name": "xw-mindmap",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "repoUrl": "https://github.com/guanxuewen-eng/ai-xw-mindmap",
-  "releaseNotes": "Uses the HTTPS domain endpoint as the default Skill API and keeps checksum-verified updates.",
+  "releaseNotes": "Fixes Codex skill metadata so AI 脑图 appears in the skill list, while keeping the HTTPS domain endpoint.",
   "files": [
     {
       "path": "SKILL.md",
       "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/SKILL.md?ref=main",
-      "sha256": "da3bc03312e2b92a041feddc800571f359023af26ba3eb0ea7723dc1febebd50"
+      "sha256": "a0ef5ba977f8c96fab60441581502ab2c479cfc644354543a8572606aca3f22a"
     },
     {
       "path": "scripts/xw-mindmap.mjs",
       "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/scripts/xw-mindmap.mjs?ref=main",
       "executable": true,
-      "sha256": "f3b2a85083fb5fda4c0aa29b50a480a45af782c9b7e86839dc20ef5408bb4908"
+      "sha256": "0e7e9d701e1af7e0346e263dc32d1e2efbd448d78402523e70db35c6e6bcdc22"
     },
     {
       "path": "agents/openai.yaml",
       "url": "https://api.github.com/repos/guanxuewen-eng/ai-xw-mindmap/contents/agent-skills/xw-mindmap/agents/openai.yaml?ref=main",
-      "sha256": "2e5ce3cb71cbdea8e1b1d56a1ad16ce924abf6a21eafd84d15737df4c69b1c7d"
+      "sha256": "d1de91d1b2a5b06598d6c082526493459a0f5d664824d8c09e67aa0ba961ca87"
     },
     {
       "path": "skill-version.json",

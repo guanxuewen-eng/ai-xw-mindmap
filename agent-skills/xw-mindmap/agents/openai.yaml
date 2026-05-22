@@ -1,5 +1,5 @@
 interface:
   display_name: "AI 脑图"
-  short_description: "打开、读取和提案修改脑图"
+  short_description: "连接智能体，打开、读取、提案和协作编辑云端脑图项目"
   brand_color: "#2154D4"
-  default_prompt: "Use $xw-mindmap to create or open a mind map and draft a project architecture outline."
+  default_prompt: "Use $xw-mindmap to create or open a cloud mind map and draft a project architecture outline."

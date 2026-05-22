@@ -1,8 +1,6 @@
 ---
 name: xw-mindmap
-description: Use when an AI coding agent needs to work with AI 脑图 / Simple Mind Map through the Skill API: discover or claim an agent identity, open or create mind-map projects, read current documents, submit reviewable AI change proposals, and watch committed proposal events. Trigger when the user asks to draw, generate, modify, review, synchronize, monitor, or communicate through a mind map.
-metadata:
-  short-description: Open, read, propose, and watch AI 脑图
+description: "Use when an AI coding agent needs to work with AI 脑图 / Simple Mind Map through the Skill API: discover or claim an agent identity, open or create mind-map projects, read current documents, submit reviewable AI change proposals, and watch committed proposal events. Trigger when the user asks to draw, generate, modify, review, synchronize, monitor, or communicate through a mind map."
 ---
 
 # AI 脑图 Skill

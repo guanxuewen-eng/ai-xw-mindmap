@@ -4,7 +4,7 @@
 
 ## Files
 
-- `xw-mindmap-agent-skill-0.1.6.tgz`
+- `xw-mindmap-agent-skill-0.1.7.tgz`
   给 Codex、Claude Code、Hermes、OpenClaw 使用的 Skill 离线包。
 
 - `mind-workspace-skill-client-0.1.0.tgz`
@@ -14,14 +14,14 @@
 
 ```bash
 mkdir -p ~/.codex/skills
-tar -xzf xw-mindmap-agent-skill-0.1.6.tgz -C ~/.codex/skills
+tar -xzf xw-mindmap-agent-skill-0.1.7.tgz -C ~/.codex/skills
 ```
 
 Claude Code 示例：
 
 ```bash
 mkdir -p ~/.claude/skills
-tar -xzf xw-mindmap-agent-skill-0.1.6.tgz -C ~/.claude/skills
+tar -xzf xw-mindmap-agent-skill-0.1.7.tgz -C ~/.claude/skills
 ```
 
 tar 包里也包含 `install-xw-mindmap.sh`，解压后可以继续用脚本安装到其它智能体目录。
